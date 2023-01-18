@@ -10,7 +10,7 @@ pipeline{
                 url: 'https://github.com/radhoueneBousnina/devops_project.git'
             }
         }
-        stage('logout'){
+        stage('logout1'){
             steps{
                 bat 'docker logout'
             }
