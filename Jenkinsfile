@@ -21,7 +21,7 @@ pipeline{
 
         stage('build docker image'){
             steps{
-                bat 'docker build --no cache -t devopsproject -f Dockerfile .'
+                bat 'docker build --no-cache -t devopsproject -f Dockerfile .'
             }
         }
 
