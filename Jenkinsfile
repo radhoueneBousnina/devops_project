@@ -13,13 +13,15 @@ pipeline{
 
         stage('dockerhub login'){
             steps{
-                bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                withCredentials([usernamePassword(credentialsId:'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                    bat 'docker login -u $USERNAME -p $PASSWORD'
+                }
             } 
         }
 
         stage('build docker image'){
             steps{
-                bat 'docker build --no cache -t devopsproject -f Dockerfile .'
+                bat 'docker build --no-cache -t devopsproject -f Dockerfile .'
             }
         }
 
