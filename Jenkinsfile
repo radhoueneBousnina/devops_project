@@ -10,23 +10,22 @@ pipeline{
                 url: 'https://github.com/radhoueneBousnina/devops_project.git'
             }
         }
-        stage('logout1'){
+
+        
+        stage('build docker image'){
             steps{
-                bat 'docker logout'
+                bat 'docker build --no-cache -t devopsproject -f Dockerfile .'
             }
         }
+        
 
         stage('dockerhub login'){
             steps{
                 bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             } 
         }
+        
 
-        stage('build docker image'){
-            steps{
-                bat 'docker build --no-cache -t devopsproject -f Dockerfile .'
-            }
-        }
 
         stage('push'){
             steps{
