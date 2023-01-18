@@ -19,14 +19,14 @@ pipeline{
         
         stage('build docker image'){
             steps{
-                sh 'docker build --no-cache -t devopsproject -f Dockerfile .'
+                sh 'docker build --no-cache -t radhouene03/devopsproject:0.1 -f Dockerfile .'
             }
         }
         
 
         stage('push'){
             steps{
-                sh 'docker push radhouene03/devopsproject'
+                sh 'docker push radhouene03/devopsproject:0.1'
             }
         }
 
